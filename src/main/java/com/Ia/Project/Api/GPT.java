@@ -7,18 +7,20 @@ import com.theokanning.openai.service.OpenAiService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class GPT {
 
-    String apikey;
-    public GPT(@Value("${api.key}") String apikey) {
-        this.apikey = apikey;
-    }
+    @Value(value = "${openai.model}")
+    private String model;
 
-    OpenAiService service = new OpenAiService("");
+    @Value(value = "${openai.api.key}")
+    private String api;
+
+    OpenAiService service = new OpenAiService(api);
 
 
     public List<String> iaResponse(String message){
@@ -26,7 +28,7 @@ public class GPT {
         try{
 
             CompletionRequest request = CompletionRequest.builder()
-                    .model("GPT-3.5 Turbo")
+                    .model(model)
                     .prompt(message)
                     .maxTokens(100)
                     .build();
@@ -39,7 +41,10 @@ public class GPT {
 
             return gptResponse;
         }catch (Exception e ){
-            return null;
+                    List<String> test = new ArrayList<>();
+                    test.add(e.getMessage());
+                    return test;
+
         }
 
     }
