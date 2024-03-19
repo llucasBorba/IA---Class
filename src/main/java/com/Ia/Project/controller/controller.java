@@ -1,6 +1,7 @@
 package com.Ia.Project.controller;
 
 import com.Ia.Project.Api.GPT;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,8 @@ import java.util.List;
 
 @RestController
 public class controller {
+
+
 
     GPT gpt;
     public controller(GPT gpt) {
@@ -24,7 +27,7 @@ public class controller {
 
     @GetMapping("/test")
     public String test(){
-        return "Hello world";
+        return "Hello";
     }
 }
 

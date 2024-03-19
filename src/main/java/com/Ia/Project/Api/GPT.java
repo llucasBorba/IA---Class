@@ -17,10 +17,8 @@ public class GPT {
     @Value(value = "${openai.model}")
     private String model;
 
-    @Value(value = "${openai.api.key}")
-    private String api;
 
-    OpenAiService service = new OpenAiService(api);
+    OpenAiService service = new OpenAiService("d");
 
 
     public List<String> iaResponse(String message){
