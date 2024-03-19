@@ -12,7 +12,6 @@ import java.util.List;
 public class controller {
 
     GPT gpt;
-
     public controller(GPT gpt) {
         this.gpt = gpt;
     }
